@@ -14,6 +14,37 @@ import {
 } from 'react-router-dom';
 
 class App extends Component {
+  constructor(props) {
+  super(props);
+  this.state = {
+    // catList: [
+    //   'Oakley',
+    //   'Milla',
+    //   'Whisper',
+    //   'Neo',
+    // ]
+    catToys:{
+      'Oakley': [
+        'string',
+        'bookmarks',
+        'ice',
+      ],
+      'Milla': [
+        'drool'
+      ],
+      'Whisper': [
+        'string'
+      ],
+      'Neo': [
+        'the couch'
+      ]
+
+      
+    }
+
+    
+  };
+};
   render() {
     return (
       <Router>
@@ -21,9 +52,13 @@ class App extends Component {
           <NavBar/>
           <Route path="/" exact component={Home}/>
           <Route path="/about" component={About}/>
-          <Route path="/cats" component={Cats}/>
+          <Route path="/cats" render={(props) => {
+            return <Cats catList={Object.keys(this.state.catToys)} {...props}/>
+          }}/>
           {/* will pull the cat's name from OneCat file */}
-          <Route path="/cats/:catName" component={OneCat}/>
+          <Route path="/cats/:catName" render={(props) => {
+            return <OneCat toys={this.state.catToys} {...props}/>
+          }} />
         </div>
       </Router>
     );
