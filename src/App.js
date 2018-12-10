@@ -4,7 +4,8 @@ import './App.css';
 import Home from './Home';
 import About from './About';
 import Cats from './Cats';
-import NavBr from './NavBar';
+import NavBar from './NavBar';
+import OneCat from './OneCat'
 
 import {
   BrowserRouter as Router,
@@ -17,19 +18,12 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/cats">Cats</Link></li>
-          {/* <Home />
-          <About />
-          <Cats /> */}
-        </ul>
-        <NavBar/>
-        <Route path="/" exact component={Home}/>
-        <Route path="/about" component={About}/>
-        <Route path="/cats" component={Cats}/>
-
+          <NavBar/>
+          <Route path="/" exact component={Home}/>
+          <Route path="/about" component={About}/>
+          <Route path="/cats" component={Cats}/>
+          {/* will pull the cat's name from OneCat file */}
+          <Route path="/cats/:catName" component={OneCat}/>
         </div>
       </Router>
     );
